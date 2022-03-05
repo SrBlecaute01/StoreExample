@@ -7,7 +7,6 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
-import java.util.Set;
 
 @Entity
 @Data
@@ -36,8 +35,4 @@ public class Order {
     @Temporal(TemporalType.DATE)
     @Column(nullable = false)
     private Date createdAt;
-
-    @OneToMany
-    @JoinColumn(name = "product_id")
-    private Set<Product> products;
 }
