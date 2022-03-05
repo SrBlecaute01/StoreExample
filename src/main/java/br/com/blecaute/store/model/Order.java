@@ -37,9 +37,7 @@ public class Order {
     @Column(nullable = false)
     private Date createdAt;
 
-    @ManyToMany
-    @JoinTable(name = "order_products",
-            joinColumns = @JoinColumn(name = "order_id", nullable = false),
-            inverseJoinColumns = @JoinColumn(name = "product_id", nullable = false))
+    @OneToMany
+    @JoinColumn(name = "product_id")
     private Set<Product> products;
 }
