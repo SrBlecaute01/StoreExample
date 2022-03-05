@@ -5,6 +5,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import java.util.Date;
 import java.util.Set;
 
 @Entity
@@ -16,21 +18,28 @@ public class Order {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotNull
     @Column(nullable = false)
     private OrderStatus status;
 
+    @NotNull
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
+    @NotNull
     @ManyToOne
     @JoinColumn(name = "address_id", nullable = false)
     private Address address;
+
+    @NotNull
+    @Temporal(TemporalType.DATE)
+    @Column(nullable = false)
+    private Date createdAt;
 
     @ManyToMany
     @JoinTable(name = "order_products",
             joinColumns = @JoinColumn(name = "order_id", nullable = false),
             inverseJoinColumns = @JoinColumn(name = "product_id", nullable = false))
     private Set<Product> products;
-
 }

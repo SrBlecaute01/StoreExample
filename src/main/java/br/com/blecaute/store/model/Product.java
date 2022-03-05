@@ -6,7 +6,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import java.time.Instant;
+import java.util.Date;
 
 @Entity
 @Data
@@ -32,8 +32,8 @@ public class Product {
     private Double price;
 
     @NotNull
-    @Temporal(TemporalType.TIMESTAMP)
+    @Temporal(TemporalType.DATE)
     @Column(nullable = false)
-    private Instant createdAt;
+    private Date createdAt;
 
 }

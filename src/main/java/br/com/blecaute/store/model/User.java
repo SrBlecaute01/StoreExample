@@ -6,7 +6,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
-import java.time.Instant;
+import java.util.Date;
 import java.util.Set;
 
 @Entity
@@ -18,6 +18,7 @@ public class User {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotNull
     @Column(nullable = false)
     private String name;
 
@@ -35,12 +36,12 @@ public class User {
     @NotNull
     @Temporal(TemporalType.TIMESTAMP)
     @Column(nullable = false)
-    private Instant createdAt;
+    private Date createdAt;
 
     @NotNull
-    @Temporal(TemporalType.TIMESTAMP)
+    @Temporal(TemporalType.DATE)
     @Column(nullable = false)
-    private Instant lastLogin;
+    private Date lastLogin;
 
     @OneToMany(mappedBy = "user")
     private Set<Address> address;
