@@ -12,6 +12,7 @@ import javax.validation.constraints.NotNull;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Table(name = "store_address")
 public class Address {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)

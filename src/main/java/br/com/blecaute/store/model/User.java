@@ -13,6 +13,7 @@ import java.util.Set;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Table(name = "store_user")
 public class User {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)

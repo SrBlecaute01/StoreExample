@@ -12,6 +12,7 @@ import java.util.Date;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Table(name = "store_category")
 public class Category {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)

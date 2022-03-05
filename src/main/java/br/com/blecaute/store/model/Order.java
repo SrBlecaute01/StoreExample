@@ -7,11 +7,13 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
+import java.util.Set;
 
 @Entity
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Table(name = "store_order")
 public class Order {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -35,4 +37,10 @@ public class Order {
     @Temporal(TemporalType.DATE)
     @Column(nullable = false)
     private Date createdAt;
+
+    @ManyToMany
+    @JoinTable(name = "store_order_products",
+            joinColumns = @JoinColumn(name = "order_id", nullable = false),
+            inverseJoinColumns = @JoinColumn(name = "product_id", nullable = false))
+    private Set<Product> products;
 }
