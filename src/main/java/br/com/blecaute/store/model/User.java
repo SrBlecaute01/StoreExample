@@ -1,6 +1,7 @@
 package br.com.blecaute.store.model;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -11,6 +12,7 @@ import java.util.Set;
 
 @Entity
 @Data
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "store_user")
@@ -38,11 +40,6 @@ public class User {
     @Temporal(TemporalType.TIMESTAMP)
     @Column(nullable = false)
     private Date createdAt;
-
-    @NotNull
-    @Temporal(TemporalType.DATE)
-    @Column(nullable = false)
-    private Date lastLogin;
 
     @OneToMany(mappedBy = "user")
     private Set<Address> address;

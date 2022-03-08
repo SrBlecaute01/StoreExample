@@ -1,29 +1,23 @@
 package br.com.blecaute.store.dto;
 
 import br.com.blecaute.store.model.Address;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotNull;
 import java.util.Date;
 import java.util.Set;
 
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class UserDTO {
 
-    @NotNull
     private long id;
 
-    @NotNull
     private String name;
-
-    @NotNull
-    @Email(message = "Invalid email")
     private String email;
-
-    @NotNull
     private Date createdAt;
-
-    @NotNull
-    private Date lastLogin;
 
     private Set<Address> address;
 }
