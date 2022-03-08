@@ -31,7 +31,7 @@ public class User {
     @NotNull
     @Min(value = 3, message = "The password must be a minimum of 3 characters")
     @Max(value = 16, message = "The password must be a maximum of 16 characters")
-    @Column(nullable = false, length = 16)
+    @Column(nullable = false)
     private String password;
 
     @NotNull
