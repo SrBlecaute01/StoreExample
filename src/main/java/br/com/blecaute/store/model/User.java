@@ -21,11 +21,11 @@ public class User {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotBlank
+    @NotBlank(message = "The name is invalid")
     @Column(nullable = false)
     private String name;
 
-    @Email(message = "Invalid email")
+    @Email(message = "The email format is invalid")
     @Column(unique = true, nullable = false)
     private String email;
 
@@ -33,7 +33,7 @@ public class User {
     @Column(nullable = false)
     private String password;
 
-    @NotNull
+    @NotNull(message = "The date is invalid")
     @Temporal(TemporalType.TIMESTAMP)
     @Column(nullable = false)
     private Date createdAt;
