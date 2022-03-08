@@ -95,6 +95,10 @@ public class UserService {
             user.setName(name);
         }
 
+        if (email != null) {
+            user.setEmail(email);
+        }
+
         if (password != null) {
             user.setPassword(password);
         }
