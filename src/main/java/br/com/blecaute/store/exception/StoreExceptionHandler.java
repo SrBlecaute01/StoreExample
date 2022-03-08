@@ -27,7 +27,7 @@ public class StoreExceptionHandler {
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<Object> handleValidationException(MethodArgumentNotValidException exception) {
-        StoreExceptionResponse response = new StoreExceptionResponse(HttpStatus.BAD_REQUEST, exception);
+        StoreExceptionResponse response = new StoreExceptionResponse(HttpStatus.BAD_REQUEST, "Validation failed");
         exception.getBindingResult().getAllErrors().forEach(error ->
                 response.addCause(new StoreExceptionResponse.Cause(error.getDefaultMessage())));
 
