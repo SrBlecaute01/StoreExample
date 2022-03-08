@@ -12,6 +12,7 @@ import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -57,7 +58,10 @@ public class UserService {
                 .createdAt(new Date())
                 .build());
 
-        return mapper.map(user, UserDTO.class);
+        UserDTO dto = mapper.map(user, UserDTO.class);
+        dto.setAddress(Collections.emptySet());
+
+        return dto;
     }
 
     public void delete(long id) {
@@ -75,20 +79,27 @@ public class UserService {
         }
 
         String email = dto.getEmail();
-        if (dto.getEmail() != null && repository.existsByEmail(email)) {
+        User user = optional.get();
+
+        if (dto.getEmail() != null &&
+                user.getEmail().equals(email) &&
+                repository.existsByEmail(email)) {
+
             throw new EmailAlreadyRegisteredException("The email provided was already registered");
         }
 
-        User user = repository.save(optional.map(input -> {
-            input.setEmail(dto.getEmail());
-            input.setName(dto.getEmail());
-            input.setPassword(dto.getPassword());
+        String password = dto.getPassword();
+        String name = dto.getName();
 
-            return input;
+        if (name != null) {
+            user.setName(name);
+        }
 
-        }).get());
+        if (password != null) {
+            user.setPassword(password);
+        }
 
-        return mapper.map(user, UserDTO.class);
+        return mapper.map(repository.save(user), UserDTO.class);
     }
 
 }
