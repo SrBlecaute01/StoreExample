@@ -25,14 +25,11 @@ public class User {
     @Column(nullable = false)
     private String name;
 
-    @NotNull
     @Email(message = "Invalid email")
     @Column(unique = true, nullable = false)
     private String email;
 
-    @NotNull
-    @Min(value = 3, message = "The password must be a minimum of 3 characters")
-    @Max(value = 16, message = "The password must be a maximum of 16 characters")
+    @Size(min = 3, max = 16, message = "The password must be between 3 and 16 characters long")
     @Column(nullable = false)
     private String password;
 

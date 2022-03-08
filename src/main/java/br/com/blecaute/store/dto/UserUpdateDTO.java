@@ -4,27 +4,22 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.validation.constraints.Email;
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotBlank;
-import java.util.Date;
+import javax.validation.constraints.*;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 public class UserUpdateDTO {
 
+    @Null
     @NotBlank
     private String name;
 
+    @Null
     @Email
     private String email;
 
-    @Min(value = 3, message = "The password must be a minimum of 3 characters")
-    @Max(value = 16, message = "The password must be a maximum of 16 characters")
+    @Null
+    @Size(min = 3, max = 16, message = "The password must be between 3 and 16 characters long")
     private String password;
-
-    private Date createdAt;
-
 }
