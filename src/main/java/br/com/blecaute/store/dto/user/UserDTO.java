@@ -1,4 +1,4 @@
-package br.com.blecaute.store.dto;
+package br.com.blecaute.store.dto.user;
 
 import br.com.blecaute.store.model.Address;
 import lombok.AllArgsConstructor;

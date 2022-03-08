@@ -1,13 +1,12 @@
 package br.com.blecaute.store.controller;
 
-import br.com.blecaute.store.dto.UserCreateDTO;
-import br.com.blecaute.store.dto.UserDTO;
-import br.com.blecaute.store.dto.UserUpdateDTO;
+import br.com.blecaute.store.dto.user.UserCreateDTO;
+import br.com.blecaute.store.dto.user.UserDTO;
+import br.com.blecaute.store.dto.user.UserUpdateDTO;
 import br.com.blecaute.store.service.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -17,7 +16,6 @@ import java.util.List;
 @AllArgsConstructor
 @RestController
 @RequestMapping("/api/v1/user")
-@Validated
 public class UserController {
 
     private UserService service;

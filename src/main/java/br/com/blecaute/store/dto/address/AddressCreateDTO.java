@@ -1,40 +1,24 @@
-package br.com.blecaute.store.model;
+package br.com.blecaute.store.dto.address;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Positive;
 
-@Entity
-@Data
-@Builder
-@NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "store_address")
-public class Address {
-
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+@NoArgsConstructor
+@Data
+public class AddressCreateDTO {
 
     @NotNull(message = "The number cannot be null")
     @Positive(message = "The number must be positive")
-    @Column(nullable = false)
     private Long number;
 
     @Pattern(regexp = "^\\d{5}\\-\\d{3}?$", message = "Invalid postal code format")
-    @Column(nullable = false)
     private String code;
 
     private String complement;
-
-    @ManyToOne
-    @JoinColumn(name = "user_id", nullable = false)
-    @JsonIgnore
-    private User user;
 }

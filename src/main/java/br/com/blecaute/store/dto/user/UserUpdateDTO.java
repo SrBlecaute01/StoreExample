@@ -1,10 +1,8 @@
-package br.com.blecaute.store.dto;
+package br.com.blecaute.store.dto.user;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import javax.validation.constraints.*;
 
 @Data
 @NoArgsConstructor

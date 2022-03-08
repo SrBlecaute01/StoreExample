@@ -1,8 +1,8 @@
 package br.com.blecaute.store.service;
 
-import br.com.blecaute.store.dto.UserCreateDTO;
-import br.com.blecaute.store.dto.UserDTO;
-import br.com.blecaute.store.dto.UserUpdateDTO;
+import br.com.blecaute.store.dto.user.UserCreateDTO;
+import br.com.blecaute.store.dto.user.UserDTO;
+import br.com.blecaute.store.dto.user.UserUpdateDTO;
 import br.com.blecaute.store.exception.email.EmailAlreadyRegisteredException;
 import br.com.blecaute.store.exception.user.UserNotFoundException;
 import br.com.blecaute.store.model.User;
