@@ -17,7 +17,6 @@ public class UserCreateDTO {
     @Email(message = "Invalid email")
     private String email;
 
-    @Min(value = 3, message = "The password must be a minimum of 3 characters")
-    @Max(value = 16, message = "The password must be a maximum of 16 characters")
+    @Size(min = 3, max = 16, message = "The password must be between 3 and 16 characters long")
     private String password;
 }
