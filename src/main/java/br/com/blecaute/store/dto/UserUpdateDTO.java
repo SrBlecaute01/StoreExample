@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
 import java.util.Date;
 
 @Data
@@ -14,7 +15,7 @@ import java.util.Date;
 @AllArgsConstructor
 public class UserUpdateDTO {
 
-    @Min(value = 3, message = "The name must be a minimum of 3 characters")
+    @NotBlank
     private String name;
 
     @Email
