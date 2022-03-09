@@ -9,6 +9,7 @@ import javax.persistence.*;
 import javax.validation.constraints.*;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.Set;
 
 @Entity
@@ -40,6 +41,5 @@ public class User {
     private Date createdAt;
 
     @OneToMany(mappedBy = "user")
-    private Set<Address> address;
-
+    private Set<Address> address = new LinkedHashSet<>();
 }

@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.Date;
+import java.util.LinkedHashSet;
 import java.util.Set;
 
 @Data
@@ -19,5 +20,14 @@ public class UserDTO {
     private String email;
     private Date createdAt;
 
-    private Set<AddressDTO> address;
+    private Set<AddressDTO> address = new LinkedHashSet<>();
+
+    public void addAddress(AddressDTO address) {
+       if (this.address == null) {
+           this.address = new LinkedHashSet<>();
+       }
+
+       this.address.add(address);
+    }
+
 }

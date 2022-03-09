@@ -1,5 +1,6 @@
 package br.com.blecaute.store;
 
+import br.com.blecaute.store.converter.UserConvert;
 import org.modelmapper.ModelMapper;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -9,7 +10,10 @@ public class StoreConfiguration {
 
     @Bean
     public ModelMapper mapper() {
-        return new ModelMapper();
+        ModelMapper mapper = new ModelMapper();
+        mapper.addConverter(new UserConvert());
+
+        return mapper;
     }
 
 }
