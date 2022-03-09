@@ -21,13 +21,4 @@ public class UserDTO {
     private Date createdAt;
 
     private Set<AddressDTO> address = new LinkedHashSet<>();
-
-    public void addAddress(AddressDTO address) {
-       if (this.address == null) {
-           this.address = new LinkedHashSet<>();
-       }
-
-       this.address.add(address);
-    }
-
 }
