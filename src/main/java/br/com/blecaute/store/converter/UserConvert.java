@@ -13,7 +13,10 @@ public class UserConvert implements Converter<User, UserDTO> {
     public UserDTO convert(MappingContext<User, UserDTO> context) {
 
         User source = context.getSource();
+        if (source == null) return null;
+
         UserDTO destination = context.getDestination();
+        destination = destination == null ? new UserDTO() : destination;
 
         System.out.println(source);
         System.out.println(destination);
