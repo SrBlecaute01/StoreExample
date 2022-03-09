@@ -3,7 +3,6 @@ package br.com.blecaute.store.controller;
 import br.com.blecaute.store.dto.address.AddressCreateDTO;
 import br.com.blecaute.store.dto.address.AddressDTO;
 import br.com.blecaute.store.dto.address.AddressUpdateDTO;
-import br.com.blecaute.store.model.Address;
 import br.com.blecaute.store.service.AddressService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
