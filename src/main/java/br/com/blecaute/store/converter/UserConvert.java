@@ -15,6 +15,9 @@ public class UserConvert implements Converter<User, UserDTO> {
         User source = context.getSource();
         UserDTO destination = context.getDestination();
 
+        System.out.println(source);
+        System.out.println(destination);
+
         destination.setId(source.getId());
         destination.setName(source.getName());
         destination.setEmail(source.getEmail());
