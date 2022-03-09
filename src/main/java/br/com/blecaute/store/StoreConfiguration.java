@@ -12,9 +12,7 @@ public class StoreConfiguration {
     @Bean
     public ModelMapper mapper() {
         ModelMapper mapper = new ModelMapper();
-
         mapper.addConverter(new UserConvert());
-        mapper.getConfiguration().setPropertyCondition(Conditions.isNotNull());
 
         return mapper;
     }
