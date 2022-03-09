@@ -1,6 +1,6 @@
 package br.com.blecaute.store.dto.user;
 
-import br.com.blecaute.store.model.Address;
+import br.com.blecaute.store.dto.address.AddressDTO;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -19,5 +19,5 @@ public class UserDTO {
     private String email;
     private Date createdAt;
 
-    private Set<Address> address;
+    private Set<AddressDTO> address;
 }

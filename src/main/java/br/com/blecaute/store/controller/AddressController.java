@@ -1,6 +1,7 @@
 package br.com.blecaute.store.controller;
 
 import br.com.blecaute.store.dto.address.AddressCreateDTO;
+import br.com.blecaute.store.dto.address.AddressDTO;
 import br.com.blecaute.store.dto.address.AddressUpdateDTO;
 import br.com.blecaute.store.model.Address;
 import br.com.blecaute.store.service.AddressService;
@@ -19,12 +20,12 @@ public class AddressController {
     private AddressService service;
 
     @GetMapping("/{id}")
-    public ResponseEntity<Address> findById(@PathVariable long id) {
+    public ResponseEntity<AddressDTO> findById(@PathVariable long id) {
         return ResponseEntity.ok(service.findById(id));
     }
 
     @PostMapping("/{id}")
-    public ResponseEntity<Address> create(@PathVariable long id, @Valid @RequestBody AddressCreateDTO address) {
+    public ResponseEntity<AddressDTO> create(@PathVariable long id, @Valid @RequestBody AddressCreateDTO address) {
         return new ResponseEntity<>(service.save(id, address), HttpStatus.CREATED);
     }
 
@@ -35,7 +36,7 @@ public class AddressController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Address> update(@PathVariable long id,@RequestBody AddressUpdateDTO address) {
+    public ResponseEntity<AddressDTO> update(@PathVariable long id,@RequestBody AddressUpdateDTO address) {
         return ResponseEntity.ok(service.update(id, address));
     }
 
