@@ -1,7 +1,6 @@
 package br.com.blecaute.store;
 
 import br.com.blecaute.store.converter.UserConvert;
-import org.modelmapper.Conditions;
 import org.modelmapper.ModelMapper;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
