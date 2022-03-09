@@ -5,12 +5,12 @@ import lombok.*;
 import javax.persistence.*;
 import javax.validation.constraints.*;
 import java.util.Date;
-import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
 @Entity
-@Data
+@Getter
+@Setter
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor

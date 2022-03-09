@@ -9,7 +9,8 @@ import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Positive;
 
 @Entity
-@Data
+@Getter
+@Setter
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
