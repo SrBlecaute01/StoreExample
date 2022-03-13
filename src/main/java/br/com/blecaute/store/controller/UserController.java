@@ -6,7 +6,6 @@ import br.com.blecaute.store.dto.user.UserUpdateDTO;
 import br.com.blecaute.store.service.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -21,34 +20,39 @@ public class UserController {
     private UserService service;
 
     @GetMapping("/all")
-    public ResponseEntity<List<UserDTO>> findAll() {
-        return ResponseEntity.ok(service.findAll());
+    @ResponseStatus(HttpStatus.OK)
+    public List<UserDTO> findAll() {
+        return service.findAll();
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<UserDTO> findById(@PathVariable long id) {
-        return ResponseEntity.ok(service.findById(id));
+    @ResponseStatus(HttpStatus.OK)
+    public UserDTO findById(@PathVariable long id) {
+        return service.findById(id);
     }
 
     @GetMapping("/email/{email}")
-    public ResponseEntity<UserDTO> findByEmail(@Email @PathVariable String email) {
-        return ResponseEntity.ok(service.findByEmail(email));
+    @ResponseStatus(HttpStatus.OK)
+    public UserDTO findByEmail(@Email @PathVariable String email) {
+        return service.findByEmail(email);
     }
 
     @PostMapping
-    public ResponseEntity<UserDTO> create(@Valid @RequestBody UserCreateDTO user) {
-        return new ResponseEntity<>(service.save(user), HttpStatus.CREATED);
+    @ResponseStatus(HttpStatus.CREATED)
+    public UserDTO create(@Valid @RequestBody UserCreateDTO user) {
+        return service.save(user);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> delete(@PathVariable long id) {
+    @ResponseStatus(HttpStatus.OK)
+    public void delete(@PathVariable long id) {
         service.delete(id);
-        return ResponseEntity.ok().build();
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<UserDTO> update(@PathVariable long id, @Valid @RequestBody UserUpdateDTO user) {
-        return ResponseEntity.ok(service.update(id, user));
+    @ResponseStatus(HttpStatus.OK)
+    public UserDTO update(@PathVariable long id, @Valid @RequestBody UserUpdateDTO user) {
+        return service.update(id, user);
     }
 
 }
