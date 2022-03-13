@@ -18,12 +18,12 @@ public class Category {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotNull
+    @NotNull(message = "The name cannot be null")
     @Column(nullable = false)
     private String name;
 
-    @NotNull
-    @Temporal(TemporalType.DATE)
+    @NotNull(message = "The date cannot be null")
+    @Temporal(TemporalType.TIMESTAMP)
     @Column(nullable = false)
     private Date createdAt;
 
