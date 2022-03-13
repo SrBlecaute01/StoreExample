@@ -41,6 +41,7 @@ public class AddressService {
 
         Address address = addressRepository.save(Address.builder()
                 .code(dto.getCode())
+                .street(dto.getStreet())
                 .complement(dto.getComplement())
                 .number(dto.getNumber())
                 .user(optional.get())
