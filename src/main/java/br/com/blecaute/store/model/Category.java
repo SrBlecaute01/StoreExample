@@ -19,7 +19,7 @@ public class Category {
     private Long id;
 
     @NotNull(message = "The name cannot be null")
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     private String name;
 
     @NotNull(message = "The date cannot be null")
