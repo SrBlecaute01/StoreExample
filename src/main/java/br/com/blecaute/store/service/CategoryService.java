@@ -28,7 +28,7 @@ public class CategoryService {
         return repository.findById(id).orElseThrow(CategoryNotFoundException::new);
     }
 
-    public Category findById(String name) {
+    public Category findByName(String name) {
         return repository.findByName(name).orElseThrow(CategoryNotFoundException::new);
     }
 
