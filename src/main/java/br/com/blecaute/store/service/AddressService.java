@@ -6,14 +6,11 @@ import br.com.blecaute.store.dto.address.AddressUpdateDTO;
 import br.com.blecaute.store.exception.address.AddressNotFoundException;
 import br.com.blecaute.store.exception.user.UserNotFoundException;
 import br.com.blecaute.store.model.Address;
-import br.com.blecaute.store.model.User;
 import br.com.blecaute.store.repository.AddressRepository;
 import br.com.blecaute.store.repository.UserRepository;
 import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
-
-import java.util.Optional;
 
 @Service
 @AllArgsConstructor
@@ -25,26 +22,20 @@ public class AddressService {
     private ModelMapper mapper;
 
     public AddressDTO findById(long id) {
-        Optional<Address> optional = addressRepository.findById(id);
-        if (optional.isEmpty()) {
-            throw new AddressNotFoundException("The address with provided id was not found");
-        }
-
-        return mapper.map(optional.get(), AddressDTO.class);
+        return mapper.map(
+                addressRepository.findById(id).orElseThrow(AddressNotFoundException::new),
+                AddressDTO.class
+        );
     }
 
-    public AddressDTO save(long user, AddressCreateDTO dto) {
-        Optional<User> optional = userRepository.findById(user);
-        if (optional.isEmpty()) {
-            throw new UserNotFoundException("The user with provided id was not found");
-        }
-
-        Address address = addressRepository.save(Address.builder()
+    public AddressDTO save(long userId, AddressCreateDTO dto) {
+        final var user =  userRepository.findById(userId).orElseThrow(UserNotFoundException::new);
+        final var address = addressRepository.save(Address.builder()
                 .code(dto.getCode())
                 .street(dto.getStreet())
                 .complement(dto.getComplement())
                 .number(dto.getNumber())
-                .user(optional.get())
+                .user(user)
                 .build());
 
         return mapper.map(address, AddressDTO.class);
@@ -52,23 +43,17 @@ public class AddressService {
 
     public void delete(long id) {
         if (!addressRepository.existsById(id)) {
-            throw new AddressNotFoundException("The address with provided id was not found");
+            throw new AddressNotFoundException();
         }
 
         addressRepository.deleteById(id);
     }
 
     public AddressDTO update(long id, AddressUpdateDTO dto) {
-        Optional<Address> optional = addressRepository.findById(id);
-        if (optional.isEmpty()) {
-            throw new AddressNotFoundException("The address with provided id was not found");
-        }
-
-        Address address = optional.get();
-
-        Long number = dto.getNumber();
-        String code = dto.getCode();
-        String complement = dto.getComplement();
+        final var address = addressRepository.findById(id).orElseThrow(AddressNotFoundException::new);
+        final var number = dto.getNumber();
+        final var code = dto.getCode();
+        final var complement = dto.getComplement();
 
         if (number != null) {
             address.setNumber(number);

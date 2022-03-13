@@ -15,7 +15,6 @@ import org.springframework.stereotype.Service;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @AllArgsConstructor
@@ -29,29 +28,25 @@ public class UserService {
     }
 
     public UserDTO findById(long id) {
-        Optional<User> user = repository.findById(id);
-        if (user.isEmpty()) {
-            throw new UserNotFoundException("The user with provided id was not found");
-        }
-
-        return mapper.map(user.get(), UserDTO.class);
+        return mapper.map(
+                repository.findById(id).orElseThrow(UserNotFoundException::new),
+                UserDTO.class
+        );
     }
 
     public UserDTO findByEmail(String email) {
-        Optional<User> user = repository.findByEmail(email);
-        if (user.isEmpty()) {
-            throw new UserNotFoundException("The user with provided email was not found");
-        }
-
-        return mapper.map(user.get(), UserDTO.class);
+        return mapper.map(
+                repository.findByEmail(email).orElseThrow(UserNotFoundException::new),
+                UserDTO.class
+        );
     }
 
     public UserDTO save(UserCreateDTO userDto) {
         if (repository.existsByEmail(userDto.getEmail())) {
-            throw new EmailAlreadyRegisteredException("The email provided was already registered");
+            throw new EmailAlreadyRegisteredException();
         }
 
-        User user = repository.save(User.builder()
+        final var user = repository.save(User.builder()
                 .name(userDto.getName())
                 .email(userDto.getEmail())
                 .password(userDto.getPassword())
@@ -66,30 +61,22 @@ public class UserService {
 
     public void delete(long id) {
         if (!repository.existsById(id)) {
-            throw new UserNotFoundException("The user with provided id was not found");
+            throw new UserNotFoundException();
         }
 
         repository.deleteById(id);
     }
 
     public UserDTO update(long id, UserUpdateDTO dto) {
-        Optional<User> optional = repository.findById(id);
-        if (optional.isEmpty()) {
-            throw new UserNotFoundException("The user with provided id was not found");
+        final var user = repository.findById(id).orElseThrow(UserNotFoundException::new);
+        final var email = dto.getEmail();
+
+        if (user.getEmail().equals(email) && repository.existsByEmail(email)) {
+            throw new EmailAlreadyRegisteredException();
         }
 
-        String email = dto.getEmail();
-        User user = optional.get();
-
-        if (dto.getEmail() != null &&
-                user.getEmail().equals(email) &&
-                repository.existsByEmail(email)) {
-
-            throw new EmailAlreadyRegisteredException("The email provided was already registered");
-        }
-
-        String password = dto.getPassword();
-        String name = dto.getName();
+        final var password = dto.getPassword();
+        final var name = dto.getName();
 
         if (name != null) {
             user.setName(name);
