@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.persistence.Column;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Positive;
@@ -13,12 +14,16 @@ import javax.validation.constraints.Positive;
 @Data
 public class AddressCreateDTO {
 
+    @Pattern(regexp = "^\\d{5}\\-\\d{3}?$", message = "Invalid postal code format")
+    private String code;
+
+    @NotNull(message = "The street cannot be null")
+    @Column(nullable = false)
+    private String street;
+
     @NotNull(message = "The number cannot be null")
     @Positive(message = "The number must be positive")
     private Long number;
-
-    @Pattern(regexp = "^\\d{5}\\-\\d{3}?$", message = "Invalid postal code format")
-    private String code;
 
     private String complement;
 }

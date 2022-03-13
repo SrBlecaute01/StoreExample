@@ -10,8 +10,9 @@ import lombok.NoArgsConstructor;
 public class AddressDTO {
 
     private Long id;
-    private Long number;
     private String code;
+    private String street;
+    private Long number;
     private String complement;
 
 }

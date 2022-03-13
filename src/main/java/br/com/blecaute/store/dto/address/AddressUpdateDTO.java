@@ -9,8 +9,9 @@ import lombok.NoArgsConstructor;
 @Data
 public class AddressUpdateDTO {
 
-    private Long number;
     private String code;
+    private String street;
+    private Long number;
     private String complement;
 
 }

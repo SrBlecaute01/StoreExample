@@ -20,18 +20,22 @@ public class Address {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Pattern(regexp = "^\\d{5}\\-\\d{3}?$", message = "Invalid postal code format")
+    @Column(nullable = false)
+    private String code;
+
+    @NotNull(message = "The street cannot be null")
+    @Column(nullable = false)
+    private String street;
+
     @NotNull(message = "The number cannot be null")
     @Positive(message = "The number must be positive")
     @Column(nullable = false)
     private Long number;
 
-    @Pattern(regexp = "^\\d{5}\\-\\d{3}?$", message = "Invalid postal code format")
-    @Column(nullable = false)
-    private String code;
-
     private String complement;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
     @JsonIgnore
     @ToString.Exclude
