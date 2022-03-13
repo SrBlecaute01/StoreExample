@@ -4,7 +4,6 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Column;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Positive;
@@ -18,7 +17,6 @@ public class AddressCreateDTO {
     private String code;
 
     @NotNull(message = "The street cannot be null")
-    @Column(nullable = false)
     private String street;
 
     @NotNull(message = "The number cannot be null")
