@@ -71,7 +71,7 @@ public class ProductService {
         }
 
         final var price = dto.getPrice();
-        if (price != null && price >= 0) {
+        if (price != null) {
             product.setPrice(price);
         }
 
