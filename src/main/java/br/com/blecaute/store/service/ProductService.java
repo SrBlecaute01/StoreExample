@@ -6,8 +6,6 @@ import br.com.blecaute.store.exception.product.ProductNotFoundException;
 import br.com.blecaute.store.model.Product;
 import br.com.blecaute.store.repository.ProductRepository;
 import lombok.AllArgsConstructor;
-import org.modelmapper.ModelMapper;
-import org.modelmapper.TypeToken;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
@@ -19,8 +17,6 @@ public class ProductService {
 
     private ProductRepository productRepository;
     private CategoryService categoryService;
-
-    private ModelMapper mapper;
 
     public List<Product> findAll() {
         return productRepository.findAll();
