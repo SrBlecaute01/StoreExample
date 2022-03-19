@@ -1,10 +1,8 @@
 package br.com.blecaute.store.dto.product;
 
-import br.com.blecaute.store.model.Category;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
-import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.PositiveOrZero;
 
