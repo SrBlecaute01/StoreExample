@@ -1,13 +1,13 @@
 package br.com.blecaute.store.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Data
@@ -28,5 +28,10 @@ public class Category {
     @Temporal(TemporalType.TIMESTAMP)
     @Column(nullable = false)
     private Date createdAt;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "category")
+    @ToString.Exclude
+    private List<Product> products;
 
 }
