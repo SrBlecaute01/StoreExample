@@ -37,7 +37,7 @@ public class OrderService {
         return orderRepository.findById(id).orElse(null);
     }
 
-    public Set<Order> findByUserId(long userId) {
+    public List<Order> findByUserId(long userId) {
         return userRepository.findById(userId)
                 .map(User::getOrders)
                 .orElseThrow(UserNotFoundException::new);

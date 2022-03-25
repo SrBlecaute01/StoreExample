@@ -7,6 +7,7 @@ import javax.persistence.*;
 import javax.validation.constraints.*;
 import java.util.Date;
 import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -45,6 +46,6 @@ public class User {
     @OneToMany(mappedBy = "user")
     @JsonIgnore
     @ToString.Exclude
-    private Set<Order> orders;
+    private List<Order> orders;
 
 }
