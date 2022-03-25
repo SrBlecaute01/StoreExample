@@ -1,5 +1,6 @@
 package br.com.blecaute.store.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
@@ -40,4 +41,10 @@ public class User {
     @OneToMany(mappedBy = "user")
     @ToString.Exclude
     private Set<Address> address = new LinkedHashSet<>();
+
+    @OneToMany(mappedBy = "user")
+    @JsonIgnore
+    @ToString.Exclude
+    private Set<Order> orders;
+
 }
